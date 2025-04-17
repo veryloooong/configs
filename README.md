@@ -1,2 +1,6 @@
 # configs
-All my config files
+
+All my configs, including
+
+- PowerShell
+- oh-my-posh
