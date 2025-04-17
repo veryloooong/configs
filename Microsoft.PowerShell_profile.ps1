@@ -1,10 +1,9 @@
 Import-Module PSReadline
 Import-Module posh-git
 
-oh-my-posh init pwsh --config "C:\Users\Long\.config\omp.toml" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:UserProfile\.config\omp.toml" | Invoke-Expression
 
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
-Invoke-Expression (& { (cargo-shuttle generate shell powershell | Out-String) })
 
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
@@ -13,13 +12,13 @@ Set-PSReadlineKeyHandler -Key 'Ctrl+d' -Function DeleteCharOrExit
 
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
-function Start-VisualStudioEnv {
-  Import-Module "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
-  Enter-VsDevShell bff8c5b6 -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64"
-}
+Set-Alias vswhere -Value "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
 
-function Start-AdminShell {
-  Start-Process wt.exe -Verb RunAs
+function Start-VisualStudioEnv {
+  $vs = vswhere -prerelease -format json -latest | ConvertFrom-Json
+  $installationPath = $vs.installationPath
+  Import-Module "$installationPath\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
+  Enter-VsDevShell $vs.instanceId -SkipAutomaticLocation
 }
 
 function Get-FullCmdPath {
