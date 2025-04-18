@@ -1,5 +1,6 @@
 Import-Module PSReadline
 Import-Module posh-git
+Import-Module PSFzf
 
 oh-my-posh init pwsh --config "$env:UserProfile\.config\omp.toml" | Invoke-Expression
 
