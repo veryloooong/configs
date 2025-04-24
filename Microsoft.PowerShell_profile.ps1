@@ -4,7 +4,12 @@ Import-Module PSReadline
 Import-Module posh-git
 Import-Module PSFzf
 
-oh-my-posh init pwsh --config "~/.config/omp.toml" | Invoke-Expression
+if ($IsWindows) {
+  oh-my-posh init pwsh --config "$env:LOCALAPPDATA\omp.toml" | Invoke-Expression
+}
+elseif ($IsLinux) { 
+  oh-my-posh init pwsh --config "~/.config/omp.toml" | Invoke-Expression
+}
 
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
 
