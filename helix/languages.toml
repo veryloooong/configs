@@ -1,0 +1,6 @@
+[[language]]
+name = "rust"
+indent = { tab-width = 2, unit = " " }
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
