@@ -6,5 +6,6 @@ All my configs, including
 - oh-my-posh
 - rustfmt
 - C/C++ on vscode (TODO)
+- Helix
 
 Works on PowerShell 7+ (duh)
