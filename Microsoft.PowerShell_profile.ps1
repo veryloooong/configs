@@ -17,6 +17,7 @@ Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key 'Ctrl+d' -Function DeleteCharOrExit
+Set-PSReadLineKeyHandler -Chord "Ctrl+f" -Function ForwardWord
 
 Set-PSReadlineOption -PredictionSource History
 

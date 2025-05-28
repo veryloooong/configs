@@ -4,3 +4,23 @@ indent = { tab-width = 2, unit = " " }
 
 [language-server.rust-analyzer]
 command = "rust-analyzer"
+
+[[language]]
+name = "python"
+indent = { tab-width = 2, unit = " " }
+comment-token = "#"
+language-servers = ["pyright", "ruff"]
+auto-format = true
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.pyright.config]
+reportMissingTypeStubs = false
+
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "basic"
+autoImportCompletions = true
+
+

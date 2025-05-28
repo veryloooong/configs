@@ -10,6 +10,10 @@ normal = "block"
 select = "underline"
 
 [keys.normal]
+# Change buffers
+C-tab = ":bn"
+C-S-tab = ":bp"
+
 # Quick iteration on config changes
 C-o = ":config-open"
 C-r = ":config-reload"
@@ -21,8 +25,8 @@ C-k = "expand_selection"
 C-l = "select_next_sibling"
 
 # Personal preference
-o = ["open_below", "normal_mode"]
-O = ["open_above", "normal_mode"]
+o = ["open_below"]
+O = ["open_above"]
 
 # Muscle memory
 "{" = ["goto_prev_paragraph", "collapse_selection"]
