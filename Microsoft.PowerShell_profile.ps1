@@ -42,3 +42,38 @@ if ($IsWindows) {
 
   Set-Alias -Name which -Value Get-FullCmdPath
 }
+
+function ConvertFrom-Base64 {
+  param (
+    [switch]$AsByteArray,
+    [string]$base64String
+  )
+
+  $bytes = [System.Convert]::FromBase64String($base64String)
+  if ($AsByteArray) {
+    return $bytes
+  }
+  $decodedString = [System.Text.Encoding]::UTF8.GetString($bytes)
+  return $decodedString
+}
+
+function ConvertTo-Base64 {
+  param (
+    [string]$string,
+    [byte[]]$bytes,
+    [switch]$FromByteArray
+  )
+
+  # if $FromByteArray is set, convert the byte array to a base64 string
+  if ($FromByteArray) {
+    return [System.Convert]::ToBase64String($bytes)
+  }
+
+  # if $string is set, convert the string to a byte array and then to a base64 string
+  if ($string) {
+    $bytes = [System.Text.Encoding]::UTF8.GetBytes($string)
+    return [System.Convert]::ToBase64String($bytes)
+  }
+  # if neither $string nor $bytes is set, return an empty string
+  return ''
+}
