@@ -3,11 +3,15 @@ theme = "onedark"
 [editor]
 line-number = "relative"
 bufferline = "multiple"
+text-width = 120
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[editor.soft-wrap]
+wrap-at-text-width = false
 
 [keys.normal]
 # Change buffers
