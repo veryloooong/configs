@@ -7,5 +7,6 @@ All my configs, including
 - rustfmt
 - C/C++ on vscode (TODO)
 - Helix
+- uv (python tooling)
 
 Works on PowerShell 7+ (duh)

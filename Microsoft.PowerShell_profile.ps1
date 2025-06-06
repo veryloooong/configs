@@ -4,14 +4,22 @@ Import-Module PSReadline
 Import-Module posh-git
 Import-Module PSFzf
 
-if ($IsWindows) {
-  oh-my-posh init pwsh --config "$env:LOCALAPPDATA\omp.toml" | Invoke-Expression
-}
-elseif ($IsLinux) { 
-  oh-my-posh init pwsh --config "~/.config/omp.toml" | Invoke-Expression
+if (Get-Command -Name oh-my-posh -ErrorAction SilentlyContinue) {
+  if ($IsWindows) {
+    oh-my-posh init pwsh --config "$env:LOCALAPPDATA\omp.toml" | Invoke-Expression
+  }
+  elseif ($IsLinux) { 
+    oh-my-posh init pwsh --config "~/.config/omp.toml" | Invoke-Expression
+  }
 }
 
-Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
+if (Get-Command -Name zoxide -ErrorAction SilentlyContinue) {
+  Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
+}
+
+if (Get-Command -Name uv -ErrorAction SilentlyContinue) {
+  Invoke-Expression (& { (uv generate-shell-completion powershell | Out-String) })
+}
 
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
