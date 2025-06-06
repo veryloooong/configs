@@ -23,4 +23,10 @@ reportMissingTypeStubs = false
 typeCheckingMode = "basic"
 autoImportCompletions = true
 
-
+[[language]]
+name = "powershell"
+scope = "source.ps1"
+roots = [".git"]
+file-types = ["ps1"]
+comment-token = "#"
+indent = { tab-width = 2, unit = " " }
