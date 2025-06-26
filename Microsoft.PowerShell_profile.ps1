@@ -21,6 +21,10 @@ if (Get-Command -Name uv -ErrorAction SilentlyContinue) {
   Invoke-Expression (& { (uv generate-shell-completion powershell | Out-String) })
 }
 
+if (Get-Command -Name rustup -ErrorAction SilentlyContinue) {
+  Invoke-Expression (& { (rustup completions powershell) | Out-String })
+}
+
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
